@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
