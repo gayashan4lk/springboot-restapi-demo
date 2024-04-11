@@ -61,6 +61,10 @@ class CashCardApplicationTests {
     void shouldReturnAllCashCardsWhenListIsRequired() {
         ResponseEntity<String> response = restTemplate.getForEntity("/cashcards", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        DocumentContext documentContext = JsonPath.parse(response.getBody());
+        int cashCardCount = documentContext.read("$.length()");
+        assertThat(cashCardCount).isEqualTo(3);
     }
 
 }
