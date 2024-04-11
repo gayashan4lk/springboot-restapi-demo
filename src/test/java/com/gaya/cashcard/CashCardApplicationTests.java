@@ -32,7 +32,7 @@ class CashCardApplicationTests {
     }
 
     @Test
-    void shouldNotReturnACashCardWithAnUnknownId(){
+    void shouldNotReturnACashCardWithAnUnknownId() {
         ResponseEntity<String> response = restTemplate.getForEntity("/cashcards/1000", String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
@@ -40,7 +40,7 @@ class CashCardApplicationTests {
     }
 
     @Test
-    void shouldCreateNewCashCard(){
+    void shouldCreateNewCashCard() {
         CashCard newCashCard = new CashCard(null, 250.00);
         ResponseEntity<Void> response = restTemplate.postForEntity("/cashcards", newCashCard, void.class);
 
@@ -55,6 +55,12 @@ class CashCardApplicationTests {
         Double amount = documentContext.read("$.amount");
         assertThat(id).isNotNull();
         assertThat(amount).isEqualTo(250.00);
+    }
+
+    @Test
+    void shouldReturnAllCashCardsWhenListIsRequired() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/cashcards", String.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
 }

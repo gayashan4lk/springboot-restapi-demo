@@ -16,13 +16,22 @@ public class CashCardController {
         this.repository = repository;
     }
 
+    @GetMapping()
+    private ResponseEntity<Iterable<CashCard>> findAll() {
+        return ResponseEntity.ok(repository.findAll());
+    }
+
     @GetMapping("/{requestedId}")
     private ResponseEntity<CashCard> findById(@PathVariable Long requestedId) {
         Optional<CashCard> cashCardOptional = repository.findById(requestedId);
 
-        if (cashCardOptional.isEmpty()) return ResponseEntity.notFound().build();
+        return cashCardOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 
+        /*
+        // above return statement is the short version of below.
+        if (cashCardOptional.isEmpty()) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(cashCardOptional.get());
+        */
 
     }
 
