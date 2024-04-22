@@ -1,4 +1,4 @@
-# Springboot RestAPI Demo
+# Building a REST API with Spring Boot (Course at [Spring Academy](https://spring.academy/))
 
 Followed tutorial:
-https://www.youtube.com/playlist?list=PL6gx4Cwl9DGDPsneZWaOFg0H2wsundyGr
+https://spring.academy/courses/building-a-rest-api-with-spring-boot
